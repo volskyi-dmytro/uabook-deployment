@@ -11,12 +11,12 @@ services:
    - BPL_JVM_THREAD_COUNT=50
    - SPRING_DATASOURCE_URL=jdbc:postgresql://uabook-postgres:5432/uabookdb_catalog
    - SPRING_PROFILES_ACTIVE=testdata
-uabook-postgres:
- image: "postgres:14.4"
- container_name: "uabook-postgres"
- ports:
-  - 5432:5432
- environment:
-  - POSTGRES_USER=user
-  - POSTGRES_PASSWORD=password
-  - POSTGRES_DB=uabookdb_catalog
+ uabook-postgres:
+  image: "postgres:14.4"
+  container_name: "uabook-postgres"
+  ports:
+   - 5432:5432
+  environment:
+   - POSTGRES_USER=user
+   - POSTGRES_PASSWORD=password
+   - POSTGRES_DB=uabookdb_catalog
