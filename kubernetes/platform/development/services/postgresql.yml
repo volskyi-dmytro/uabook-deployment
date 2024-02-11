@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uabook-postgres
+  labels:
+    db: uabook-postgres
+spec:
+  selector:
+    matchLabels:
+      db: uabook-postgres
+  template:
+    metadata:
+      labels:
+        db: uabook-postgres
+    spec:
+      containers:
+        - name: uabook-postgres
+          image: postgres:14.10
+          env:
+            - name: POSTGRES_USER
+              value: user
+            - name: POSTGRES_PASSWORD
+              value: password
+            - name: POSTGRES_DB
+              value: uabookdb_catalog
+          resources:
+            requests:
+              cpu: 100m
+              memory: 60Mi
+            limits:
+              cpu: 200m
+              memory: 120Mi
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: uabook-postgres
+  labels:
+    db: uabook-postgres
+spec:
+  type: ClusterIP
+  selector:
+    db: uabook-postgres
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
