@@ -18,6 +18,8 @@ services:
  order-service:
   depends_on:
    - uabook-postgres
+  #image: "ghcr.io/volskyi-dmytro/order-service:latest"
+  #image: "order-service:0.0.1-SNAPSHOT"
   image: "order-service"
   container_name: "order-service"
   ports:
